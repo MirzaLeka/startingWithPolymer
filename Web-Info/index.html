@@ -37,14 +37,14 @@
             }
         }
 
-        _render({$color, $background}) {
+        _render({color, background}) {
             return html `
             
             <style>
 
             .title{
-                color: $color;
-                background: $background;
+                color: ${color};
+                background: ${background};
                 padding: 5%;
                 width: 20%;
             }
@@ -65,8 +65,8 @@
 
 
 
-<counter-comp color: "yellow" background: "blue"></counter-comp>
-<counter-comp color: "pink" background: "yellow"></counter-comp>
+<counter-comp color="yellow" background="blue"></counter-comp>
+<counter-comp color= "forestgreen" background="orange"></counter-comp>
 
 </body>
 <!--<script src="../Resources/js/scripts.js"></script> -->
