@@ -16,10 +16,7 @@
   <!-- Styles css -->
     <link rel="stylesheet" type="text/css" media="screen" href="../Resources/css/styles.css" />
 </head>
-<body>
-
-
-            
+<body>            
 
 <script type="module">
 
@@ -46,12 +43,17 @@
                 color: ${color};
                 background: ${background};
                 padding: 5%;
-                width: 20%;
+                width: 30%;
             }
             
              </style>
 
-             <h1 class="title">Hello Polymer Component</h1>
+             <div class="title">
+                <slot name="header"></slot>
+                <slot name="section"></slot>
+                <slot name="footer"></slot>
+                <slot></slot>
+                </div>
             
             `;
         }
@@ -61,12 +63,26 @@
 
 </script>
 
-<h1 class="title">Hello HTML</h1>
+<div class="title">Hello HTML</div>
+
+<counter-comp color="#FFF" background="#111">
+    <div slot="header">Header Component</div>
+    <br>
+    <div slot="section">Section Component is in the same Component as Header</div>
+ </counter-comp>
 
 
+<counter-comp color="yellow" background="blue">
+   <h1> This is my first Component</h1>
+</counter-comp>
+<counter-comp color= "forestgreen" background="orange">
+    <h3>You won't believe, but this is the second Component.</h3>
+</counter-comp>
 
-<counter-comp color="yellow" background="blue"></counter-comp>
-<counter-comp color= "forestgreen" background="orange"></counter-comp>
+<counter-comp color="orange" background="#DDD">
+    <div slot="footer">Footer Component</div>
+</counter-comp>
+
 
 </body>
 <!--<script src="../Resources/js/scripts.js"></script> -->
