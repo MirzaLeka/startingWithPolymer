@@ -30,8 +30,30 @@
             super();
         }
 
-        _render() {
-            return html `Polymer Component`;
+        static get properties() {
+            return {
+                color: String,
+                background: String
+            }
+        }
+
+        _render({$color, $background}) {
+            return html `
+            
+            <style>
+
+            .title{
+                color: $color;
+                background: $background;
+                padding: 5%;
+                width: 20%;
+            }
+            
+             </style>
+
+             <h1 class="title">Hello Polymer Component</h1>
+            
+            `;
         }
     }
 
@@ -39,9 +61,12 @@
 
 </script>
 
-<counter-comp></counter-comp>
+<h1 class="title">Hello HTML</h1>
 
 
+
+<counter-comp color: "yellow" background: "blue"></counter-comp>
+<counter-comp color: "pink" background: "yellow"></counter-comp>
 
 </body>
 <!--<script src="../Resources/js/scripts.js"></script> -->
