@@ -49,19 +49,61 @@
              </style>
 
              <div class="title">
+                <header-comp title="new Child inside comp-container that is another class called header-comp" color="${color}"></header-comp><br>
                 <slot name="header"></slot>
                 <slot name="section"></slot>
                 <slot name="footer"></slot>
                 <slot></slot>
+                <header-comp title="this is the footer navigation"><br> Now we're using slots placed in header-comp</header-comp>
                 </div>
+
+                <button on-click="${this.funky}>Click Me</button>
             
             `;
         }
     }
 
+
+    // This is the next elment
+
+     class HeaderComp extends LitElement{
+        constructor() {
+            super();
+        }
+
+        static get properties() {
+            return {
+                title: String,
+                color: String
+            }
+        }
+
+        _render({title, color}) {
+            return html `
+            
+            <style>
+
+             </style>
+
+           <header class="">
+          ${this.title}
+          <slot><br> This is where the default slots go</slot>
+          <li>${this.color}</li>
+           </header>
+
+              
+            
+            `;
+        }
+    }
+
+    customElements.define("header-comp", HeaderComp);
+
     customElements.define("counter-comp", CounterComp);
 
 </script>
+
+<header-comp></header-comp>
 
 <div class="title">Hello HTML</div>
 
