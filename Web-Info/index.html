@@ -25,6 +25,7 @@
     class CounterComp extends LitElement{
         constructor() {
             super();
+            this.clickMethod = this.clickMethod.bind(this);
         }
 
         static get properties() {
@@ -34,96 +35,43 @@
             }
         }
 
+        clickMethod(number){
+            console.log("I just clicked " + number);
+        }
+
         _render({color, background}) {
             return html `
             
             <style>
 
-            .title{
-                color: ${color};
-                background: ${background};
-                padding: 5%;
-                width: 30%;
+            .primary-btn{
+                background: blue;
+                padding: 15px 25px;
+                display: inline-block;
+                color: white;
+                cursor: pointer;
             }
             
              </style>
 
-             <div class="title">
-                <header-comp title="new Child inside comp-container that is another class called header-comp" color="${color}"></header-comp><br>
-                <slot name="header"></slot>
-                <slot name="section"></slot>
-                <slot name="footer"></slot>
-                <slot></slot>
-                <header-comp title="this is the footer navigation"><br> Now we're using slots placed in header-comp</header-comp>
-                </div>
-
-                <button on-click="${this.funky}>Click Me</button>
+        <div class="primary-btn" on-click="${this.clickMethod.bind(null, 3)}">Click Here</div>
             
             `;
         }
     }
 
 
-    // This is the next elment
-
-     class HeaderComp extends LitElement{
-        constructor() {
-            super();
-        }
-
-        static get properties() {
-            return {
-                title: String,
-                color: String
-            }
-        }
-
-        _render({title, color}) {
-            return html `
-            
-            <style>
-
-             </style>
-
-           <header class="">
-          ${this.title}
-          <slot><br> This is where the default slots go</slot>
-          <li>${this.color}</li>
-           </header>
-
-              
-            
-            `;
-        }
-    }
-
-    customElements.define("header-comp", HeaderComp);
+ 
 
     customElements.define("counter-comp", CounterComp);
 
 </script>
 
-<header-comp></header-comp>
-
-<div class="title">Hello HTML</div>
-
 <counter-comp color="#FFF" background="#111">
-    <div slot="header">Header Component</div>
-    <br>
-    <div slot="section">Section Component is in the same Component as Header</div>
+  
  </counter-comp>
 
 
-<counter-comp color="yellow" background="blue">
-   <h1> This is my first Component</h1>
-</counter-comp>
-<counter-comp color= "forestgreen" background="orange">
-    <h3>You won't believe, but this is the second Component.</h3>
-</counter-comp>
-
-<counter-comp color="orange" background="#DDD">
-    <div slot="footer">Footer Component</div>
-</counter-comp>
 
 
 </body>
