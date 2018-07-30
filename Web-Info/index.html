@@ -25,11 +25,12 @@
     class CounterComp extends LitElement{
         constructor() {
             super();
-            this.clickMethod = this.clickMethod.bind(this);
+            this.total = 0;
         }
 
         static get properties() {
             return {
+                total: Number,
                 color: String,
                 background: String
             }
@@ -42,8 +43,14 @@
 
         // executes when page loads
         _firstRendered() {
-            const btn = this._root.getElementById('btn').addEventListener("click", (e) => {
-                this.clickMethod(e); //calls function clickMethod on click
+            const addBtn = this._root.getElementById('add-btn');
+            addBtn.addEventListener("click", (e) => {
+                this.total +=1;
+            });
+
+             const subBtn = this._root.getElementById('sub-btn');
+            subBtn.addEventListener("click", (e) => {
+                this.total -= 1;   
             });
         }
 
@@ -53,16 +60,25 @@
             <style>
 
             .primary-btn{
-                background: blue;
                 padding: 15px 25px;
                 display: inline-block;
                 color: white;
                 cursor: pointer;
             }
+
+            #add-btn{
+                background: blue;
+            }
+
+            #sub-btn{
+                background: red;
+            }
             
              </style>
 
-        <div class="primary-btn" id="btn">Click Here</div>
+        <div class="total">${this.total}</div>
+        <div class="primary-btn" id="add-btn">+</div>
+        <div class="primary-btn" id="sub-btn">-</div>
             
             `;
         }
@@ -75,7 +91,7 @@
 
 </script>
 
-<counter-comp color="#FFF" background="#111">
+<counter-comp color="#FFF" background="#111" total="20">
   
  </counter-comp>
 
