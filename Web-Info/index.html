@@ -35,8 +35,16 @@
             }
         }
 
-        clickMethod(number){
-            console.log("I just clicked " + number);
+        clickMethod(event){
+            console.log(event); // printing type of event
+            console.log("I just clicked ");
+        }
+
+        // executes when page loads
+        _firstRendered() {
+            const btn = this._root.getElementById('btn').addEventListener("click", (e) => {
+                this.clickMethod(e); //calls function clickMethod on click
+            });
         }
 
         _render({color, background}) {
@@ -54,7 +62,7 @@
             
              </style>
 
-        <div class="primary-btn" on-click="${this.clickMethod.bind(null, 3)}">Click Here</div>
+        <div class="primary-btn" id="btn">Click Here</div>
             
             `;
         }
